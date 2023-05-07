@@ -1,0 +1,29 @@
+class Solution {
+public:
+    
+    int fun(vector<int>& nums,int i,int n)
+    {
+        set <int> s1,s2;
+        for(int j=i;j<n;j++)
+        {
+            s1.insert(nums[j]);
+        }
+        
+        return s1.size();
+    }
+    vector<int> distinctDifferenceArray(vector<int>& nums) {
+        
+        vector<int> ans1;
+        
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            int p=fun(nums,0,i+1);
+            int q=fun(nums,i+1,nums.size());
+            int a=p-q;
+            ans1.push_back(a);     
+        }
+
+        return ans1;
+    }
+};
