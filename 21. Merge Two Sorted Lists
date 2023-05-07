@@ -1,0 +1,89 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        
+       ListNode* ans = new ListNode() ;
+      ListNode* temp = ans;
+      ListNode* temp1 = ans;
+
+       if(l1==NULL && l2 == NULL)
+            return NULL;
+
+        vector<int> v;
+
+        while(l1)
+        {
+            v.push_back(l1->val);
+            l1=l1->next;
+        }
+
+        while(l2)
+        {
+            v.push_back(l2->val);
+            l2=l2->next;
+        }
+
+        sort(v.begin(),v.end());
+        // for(int i=0;i<v.size();i++)
+        // {
+        //     cout<<v[i]<<endl;
+        // }
+
+        for(int i=0;i<v.size();i++)
+        {
+            ans->val = v[i];
+            ans -> next = new ListNode();
+            temp=ans;
+            ans = ans -> next;
+        }
+
+        // while(list1!=NULL && list2!=NULL)
+        // {
+        //     if(list1->val > list2->val)
+        //     {
+        //        ans -> val = list2->val;
+        //         list2=list2->next;
+        //         temp = ans;
+        //         ans->next = new ListNode();
+        //         ans = ans -> next;
+        //     }
+        //     else
+        //     {
+        //         ans -> val = list1->val;
+        //         list1=list1->next;
+        //         temp = ans;
+        //         ans->next = new ListNode();
+        //         ans = ans -> next;
+        //     }
+        // }
+        // while(list1)
+        // {
+        //     ans -> val = list1->val;
+        //         list1=list1->next;
+        //         temp = ans;
+        //         ans->next = new ListNode();
+        //         ans = ans -> next;
+        // }
+
+        // while(list2)
+        // {
+        //     ans -> val = list2->val;
+        //         list2=list2->next;
+        //         temp = ans;
+        //         ans->next = new ListNode();
+        //         ans = ans -> next;
+        // }
+         temp->next=NULL;
+        return temp1;
+    }
+};
