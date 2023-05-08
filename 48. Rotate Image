@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void rotate(vector<vector<int>>& m) {
+        
+        vector<int> v[m.size()];
+
+
+        for(int i=0;i<m.size();i++)
+        {
+            for(int j=0;j<m.size();j++)
+            {
+                v[i].push_back(m[j][i]);
+            }
+            reverse(v[i].begin(), v[i].end());
+        }
+
+        
+        for (int i = 0; i < m.size(); i++) {
+            for (int j = 0; j < m.size(); j++) {
+                m[i][j]=v[i][j];
+            }
+                cout << endl;
+        }
+    }
+};
