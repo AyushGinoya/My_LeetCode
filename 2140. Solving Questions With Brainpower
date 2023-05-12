@@ -1,0 +1,23 @@
+class Solution {
+public:
+    long long mostPoints(vector<vector<int>>& que) {
+        
+        long long ans=0;
+        int n=que.size();
+
+        vector<long long> dp(n+1,0);
+
+        for(int i=n-1; i>=0 ;--i){
+            int point = que[i][0];
+            int brainpower = que[i][1];
+            int skip=i+brainpower+1;
+
+            int nextPoints = min(n,skip);
+            dp[i] = max(dp[i+1], point + dp[nextPoints]);
+        }
+        return dp[0];
+        //return dp[n];
+    }
+};
+
+//O(n)
