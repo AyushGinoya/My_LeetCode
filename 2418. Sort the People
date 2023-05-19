@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        
+        map<int,string> m;
+
+        for(int i=0;i<names.size();i++)
+        {
+            m[heights[i]]=names[i];
+        }
+
+        vector<string> s;
+
+        for(auto i : m)
+        {
+            s.push_back(i.second);
+        }
+
+        reverse(s.begin(),s.end());
+
+        return s;
+    }
+};
+
+Overall, the time complexity of the sortPeople function is O(n), where n is the size of the input vectors (names and heights). 
+The space complexity is O(n) as well, considering the additional space used by the map and vector to store the names and heights.
+
+vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        vector<pair<int, string>> A;
+        int N = names.size();
+        for(int i = 0; i < N; i++) {
+            A.push_back({heights[i], names[i]});
+        }
+
+        sort(A.rbegin(), A.rend());
+
+        vector<string> ans;
+        for(int i = 0; i < N; i++) {
+            ans.push_back(A[i].second);
+        }
+        return ans;
+}
+
+the overall time complexity of the sortPeople function is dominated by the creation of the map, which is O(n log n). 
+The space complexity is O(n) since the map and vector store the names and heights.
+
