@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int findMiddleIndex(vector<int>& nums) {
+        int n = nums.size();
+        int totalSum = 0;
+        int leftSum = 0;
+
+        // Calculate the total sum of the array
+        for (int i = 0; i < n; i++) {
+            totalSum += nums[i];
+        }
+
+        // Iterate through the array and find the middle index
+        
+        for (int i = 0; i < n; i++) {
+            // Check if the left and right sums are equal
+            if (leftSum == totalSum - leftSum - nums[i]) {
+                return i;
+            }
+            // Update the left sum for the next iteration
+            leftSum += nums[i];
+        }
+
+        // If no middle index is found, return -1
+        return -1;
+    }
+};
+
+
+The time complexity of the given code is O(n), where n is the size of the input vector `nums`.
+
+1. Calculating the total sum of the array: This loop iterates over the `nums` vector once, resulting in O(n) time complexity.
+
+2. Finding the middle index: The second loop also iterates over the `nums` vector once, performing constant-time operations in each iteration. Therefore, 
+it also has a time complexity of O(n).
+
+Hence, the overall time complexity of the code is O(n).
+
+The space complexity of the code is O(1) because it only uses a few additional integer variables (`n`, `totalSum`, `leftSum`, and `i`), 
+which require constant space regardless of the size of the input vector.
