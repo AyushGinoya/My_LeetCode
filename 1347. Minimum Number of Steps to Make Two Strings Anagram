@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        map<char, int> m;
+
+        for (int i = 0; i < s.length(); i++) {
+            m[s[i]]++;
+            m[t[i]]--;
+        }
+        int ct=0;
+
+        for(auto i : m)
+        {
+            //cout<<i.first<<" "<<i.second<<endl;
+            if(i.second!=0)
+            {
+                ct=ct+abs(i.second);
+            }
+        }
+        return ct/2;
+    }
+};
+
+
+
+
+
+
+The time complexity of the given solution is O(n), and the space complexity is O(k), where n is the length of the strings `s` and `t`, and k is the number of unique characters in the strings.
+
+In the code, the first loop iterates over the characters of `s` and `t`, and performs constant-time operations for each character. 
+Since the loop runs for the length of the strings, the time complexity is O(n).
+
+The second loop iterates over the key-value pairs in the map `m`, which contains the frequency differences between the characters of `s` and `t`. 
+The number of iterations in this loop is determined by the number of unique characters in the strings, which is at most equal to k. Therefore, the time complexity of the second loop is O(k).
+
+Overall, the time complexity of the solution is O(n + k), which can be simplified to O(n) since k is generally much smaller than n.
+
+The space complexity is determined by the additional space used by the map `m`. the worst case, when all characters in `s` and `t` are unique, 
+the map `m` can store at most k key-value pairs, where k is the number of unique characters in the strings. Therefore, the space complexity is O(k).
+
+Note that the space complexity does not include the space required for the input strings `s` and `t`, 
+as they are given as function parameters and are not considered as additional space used by the solution itself.
