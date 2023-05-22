@@ -1,0 +1,68 @@
+class Solution {
+public:
+ void possibleSolution(vector<string>& ans,int m,string possi_paren,int open,int close)
+        {
+            if(possi_paren.length()==m*2)
+            {
+                ans.push_back(possi_paren);
+                return;
+            }
+
+            if(open<m)
+                possibleSolution(ans,m,possi_paren+"(",open+1,close);
+            if(close<open)
+                possibleSolution(ans,m,possi_paren+")",open,close+1);
+        }
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+
+        possibleSolution(ans,n,"",0,0);
+
+        return ans;
+    }
+};
+
+
+
+The time complexity of the given solution is O(4^n/sqrt(n)), and the space complexity is O(4^n/sqrt(n)).
+
+The time complexity is derived from the number of valid combinations of parentheses generated. 
+For each position in the combination, there are two choices: an opening parenthesis "(" or a closing parenthesis ")". 
+Since we have a total of 2n positions, the total number of valid combinations is 2^(2n). However, not all of these combinations are valid. 
+We need to consider the condition that there should be a corresponding closing parenthesis for each opening parenthesis. 
+This reduces the total number of valid combinations to the nth Catalan number, which is approximately 4^n/sqrt(n). Therefore, the time complexity is O(4^n/sqrt(n)).
+
+The space complexity is determined by the recursion depth and the size of the output vector. 
+In each recursive call, additional space is used for the `possi_paren` string, which has a maximum length of 2n. 
+Since the recursive calls are made for each position in the combination, the recursion depth is 2n. 
+Additionally, the output vector `ans` stores all the valid combinations, which can have a maximum size of 4^n/sqrt(n) as mentioned earlier. Therefore, the space complexity is O(4^n/sqrt(n)).
+
+It's important to note that the given time and space complexities are upper bounds and can be considered as rough estimates. 
+The actual time and space usage may vary depending on the specific inputs and the implementation details of the C++ compiler or runtime environment.
+
+
+
+
+
+
+
+vector<string> generateParenthesis(int n) {
+        vector<vector<string>> dp(n+1); // cache to store all generated strings
+        dp[0] = {""}; 
+        for(int i=1;i<=n;i++){
+            for(int j=0;j<i;j++){
+                vector<string> left = dp[j];
+                vector<string> right = dp[i-j-1];
+                for(int k=0;k<left.size();k++){
+                    for(int l=0;l<right.size();l++){
+                        dp[i].push_back("(" + left[k] + ")" + right[l]);
+                    }
+                }
+            }
+        }
+        return dp[n];
+    }
+    
+    
+Time Complexity - O(n^4).
+Space Complexity - O(n).
