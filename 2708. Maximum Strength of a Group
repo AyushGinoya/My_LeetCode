@@ -1,0 +1,53 @@
+class Solution {
+public:
+    long long maxStrength(vector<int>& n) {
+        
+        if(n.size()==1)
+        {
+            return n[0];
+        }
+        
+        long long ans=1;
+        vector<int> temp;
+        int ct=0,ct2=0;
+        
+        for (int i = 0; i < n.size(); i++) {
+            if(n[i]==0)
+            {
+                ct++;
+                continue;
+            }
+            if (n[i] > 0) {
+                ans *= n[i];
+            }
+            else {
+                ct2++;
+                temp.push_back(n[i]);
+            }
+        }
+        
+        if(ct+ct2==n.size() && ct2==1)
+        {
+            return 0;
+        }
+        
+        if(ct==n.size())
+        {
+            return 0;
+        }
+        
+        sort(temp.begin(),temp.end());
+
+        int x = temp.size();
+        if (x % 2 == 1) {
+            x--;
+        }
+        
+        for (int i = 0; i < x; i++) {
+            ans *= temp[i];
+        }
+
+        return ans;
+        
+    }
+};
