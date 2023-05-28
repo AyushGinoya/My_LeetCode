@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minExtraChar(string s, vector<string>& dictionary) {
+         std::unordered_set<std::string> dict(dictionary.begin(), dictionary.end());
+        int n = s.length();
+        std::vector<int> dp(n + 1, n); // DP array to store the minimum number of extra characters
+
+        dp[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = i; j >= 1; j--) {
+                std::string sub = s.substr(j - 1, i - j + 1);
+                if (dict.count(sub)) {
+                    dp[i] = std::min(dp[i], dp[j - 1]);
+                }
+            }
+            dp[i] = std::min(dp[i], dp[i - 1] + 1);
+        }
+
+        return dp[n];
+    }
+};
