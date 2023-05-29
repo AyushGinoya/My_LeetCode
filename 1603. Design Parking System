@@ -1,0 +1,37 @@
+class ParkingSystem {
+private:
+    int big_spaces;
+    int medium_spaces;
+    int small_spaces;
+
+public:
+    ParkingSystem(int big, int medium, int small) {
+        big_spaces = big;
+        medium_spaces = medium;
+        small_spaces = small;
+    }
+    
+    bool addCar(int carType) {
+        switch (carType) {
+            case 1:  // big car
+                if (big_spaces > 0) {
+                    big_spaces--;
+                    return true;
+                }
+                break;
+            case 2:  // medium car
+                if (medium_spaces > 0) {
+                    medium_spaces--;
+                    return true;
+                }
+                break;
+            case 3:  // small car
+                if (small_spaces > 0) {
+                    small_spaces--;
+                    return true;
+                }
+                break;
+        }
+        return false;  // car type not available or no spaces left
+    }
+};
