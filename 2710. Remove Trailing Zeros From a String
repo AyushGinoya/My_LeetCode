@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string removeTrailingZeros(string num) {
+        vector<char> v;
+        int ct=0;
+        
+        reverse(num.begin(),num.end());
+        
+        for(int i=0;i<num.size();i++)
+        {
+            if(num[i]=='0' && ct!=1)
+            {
+                continue;
+            }
+            else
+            {
+                ct=1;
+                v.push_back(num[i]);
+            }
+        }
+        reverse(v.begin(),v.end());
+        string str="";
+        for(int i=0;i<v.size();i++)
+        {
+           str = str + v[i];
+        }
+        
+        
+        return str;
+    }
+};
