@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<vector<int>> differenceOfDistinctValues(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        vector<vector<int>> topLeft(m, vector<int>(n));
+        vector<vector<int>> bottomRight(m, vector<int>(n));
+        vector<vector<int>> answer(m, vector<int>(n));
+        
+        // Calculate the topLeft and bottomRight values for each cell
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                unordered_set<int> topLeftDistinct;
+                unordered_set<int> bottomRightDistinct;
+                
+                // Traverse the top-left diagonal
+                for (int i = r-1, j = c-1; i >= 0 && j >= 0; i--, j--) {
+                    topLeftDistinct.insert(grid[i][j]);
+                }
+                
+                // Traverse the bottom-right diagonal
+                for (int i = r+1, j = c+1; i < m && j < n; i++, j++) {
+                    bottomRightDistinct.insert(grid[i][j]);
+                }
+                
+                topLeft[r][c] = topLeftDistinct.size();
+                bottomRight[r][c] = bottomRightDistinct.size();
+                
+                // Calculate the answer based on the difference
+                answer[r][c] = abs(topLeft[r][c] - bottomRight[r][c]);
+            }
+        }
+        
+        return answer;
+    }
+};
