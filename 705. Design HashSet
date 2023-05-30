@@ -1,0 +1,23 @@
+class MyHashSet {
+private:
+    unordered_set<int> hashSet;
+
+public:
+    MyHashSet() {
+    }
+    
+    void add(int key) {
+        // Insert the key into the hash set.
+        hashSet.insert(key);
+    }
+    
+    void remove(int key) {
+        // Erase the key from the hash set.
+        hashSet.erase(key);
+    }
+    
+    bool contains(int key) {
+        // Check if the key exists in the hash set.
+        return hashSet.count(key) > 0;
+    }
+};
