@@ -1,0 +1,41 @@
+class Solution {
+public:
+    const int n = 200;
+    vector<bool> vis;
+    vector<vector<int>> gh;
+    int provinces = 0;
+    
+    void dfs(int vertex) {
+        vis[vertex] = true;
+        
+        for(int child : gh[vertex]) {
+            if(!vis[child]) {
+                dfs(child);
+            }
+        }
+    }
+
+    int findCircleNum(vector<vector<int>>& ic) {
+        int n = ic.size();
+        gh.resize(n);
+        vis.resize(n, false);
+
+        // Construct the adjacency list from the input matrix
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(ic[i][j] == 1) {
+                    gh[i].push_back(j);
+                }
+            }
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(!vis[i]) {
+                dfs(i);
+                provinces++;
+            }
+        }
+
+        return provinces;
+    }
+};
