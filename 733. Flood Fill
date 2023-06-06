@@ -1,0 +1,34 @@
+class Solution {
+private:
+    void dfs(vector<vector<int>>& image, vector<vector<int>>& ans, int sr, int sc, int color, int initialColor) {
+        int newColor = image[sr][sc];
+        int rows[] = {1, 0, -1, 0};
+        int cols[] = {0, 1, 0, -1};
+        int n = image.size();
+        int m = image[0].size();
+        ans[sr][sc]=color;
+
+        image[sr][sc] = color; // Change the color of the current pixel
+
+        for (int i = 0; i < 4; i++) {
+            int newRow = sr + rows[i];
+            int newCol = sc + cols[i];
+
+            if (newRow >= 0 && newRow < n && newCol >= 0 && newCol < m && 
+            image[newRow][newCol] == initialColor && ans[newRow][newCol]!=color) {
+                dfs(image, ans, newRow, newCol, color, initialColor);
+            }
+        }
+    }
+
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        vector<vector<int>> ans = image;
+        int startingColor = image[sr][sc];
+
+        if (startingColor != color) { // Only perform the flood fill if the new color is different
+            dfs(image, ans, sr, sc, color, startingColor);
+        }
+        return ans;
+    }
+};
