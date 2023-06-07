@@ -1,0 +1,40 @@
+#include <bitset>
+
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        int numBits = 32; // Assuming 32-bit binary representation
+
+        std::bitset<32> binaryA(a);
+        std::bitset<32> binaryB(b);
+        std::bitset<32> binaryC(c);
+
+        if (c == (a ^ b)) {
+            return 0;
+        }
+
+        int countA = binaryA.count();
+        int countB = binaryB.count();
+        int countC = binaryC.count();
+
+        int flips = 0;
+        for (int i = 0; i < numBits; i++) {
+            bool bitA = binaryA[i];
+            bool bitB = binaryB[i];
+            bool bitC = binaryC[i];
+
+            if ((bitA | bitB) != bitC) {
+                if (bitC == 1) {
+                    flips++;
+                } else {
+                    if (bitA == 1)
+                        flips++;
+                    if (bitB == 1)
+                        flips++;
+                }
+            }
+        }
+
+        return flips;
+    }
+};
