@@ -1,0 +1,24 @@
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& l, char target) {
+        set<char> s;
+        s.insert({target});
+
+        for(auto i : l){
+            s.insert({i});
+        }
+
+        int flag=0;
+        for(auto i : s){
+            if(i==target){
+                flag=1;
+                continue;
+            }
+            if(flag){
+                return i;
+            }
+        }
+
+        return l[0];
+    }
+};
