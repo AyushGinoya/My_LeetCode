@@ -1,0 +1,16 @@
+class Solution {
+public:
+int findNonMinOrMax(std::vector<int>& nums) {
+        auto maxElement = std::max_element(nums.begin(), nums.end());
+        auto minElement = std::min_element(nums.begin(), nums.end());
+        
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == *maxElement || nums[i] == *minElement)
+                continue;
+            else
+                return nums[i];
+        }
+        
+        return -1;
+    }
+};
