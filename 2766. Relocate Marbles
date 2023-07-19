@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> relocateMarbles(vector<int>& nums, vector<int>& moveFrom, vector<int>& moveTo) {
+        
+        set<int> s;
+        
+        for(auto num : nums){
+            s.insert(num);
+        }
+        
+        for(int i=0;i<moveFrom.size();i++){
+            s.erase(moveFrom[i]);
+            s.insert(moveTo[i]);
+        }
+        
+        nums.erase(nums.begin(),nums.end());
+        
+        for(auto num: s){
+            nums.push_back(num);
+        }
+        
+        return nums;
+    }
+};
