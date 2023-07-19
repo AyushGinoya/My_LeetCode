@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maximumBeauty(vector<int>& nums, int k) {
+ int n = nums.size();
+
+        map<int, int> m;
+
+        for (auto num : nums) {
+            m[num + k+1]--;
+            m[num - k]++;
+        }
+
+        int ans = 0,tp=0;
+        for (auto i : m) {
+            tp = tp + i.second;
+            ans = max(ans, tp);
+        }
+
+        return ans;
+    }
+};
