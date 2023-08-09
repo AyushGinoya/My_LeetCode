@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    vector<int> countBits(int n) {
+       vector<int> ans;
+
+       for(int i=0;i<=n;i++){
+           int ct=0;
+           int n=i;
+           while(n!=0){
+               n=n&(n-1);
+               ct++;
+           }
+           ans.push_back(ct);
+       } 
+       return ans;
+    }
+};
+
+ TC = O(n * k), where n is the input number and k is the number of bits set in the binary representation of each number.
+
+
+vector<int> ret(num+1, 0);
+        for (int i = 1; i <= num; ++i)
+            ret[i] = ret[i&(i-1)] + 1;
+        return ret;
+
+O(n)
