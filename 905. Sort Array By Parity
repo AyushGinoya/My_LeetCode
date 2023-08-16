@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int n =nums.size();
+        int e=n-1;
+        int s=0;
+
+        while(s < e){
+            while(s < e && (nums[s] & 1) == 0)
+                s++;
+            while(s < e && (nums[e] & 1) == 1)
+                e--;
+
+            if(s < e){
+                swap(nums[e],nums[s]);
+                e--;
+                s++;
+            }
+        }
+        
+        return nums;
+    }
+};
+
+/*
+vector<int> sortArrayByParity(vector<int>& A) {
+    int j=0;
+    for(int i=0;i<A.size();i++)
+	{
+        if(A[i]%2==0)
+		{
+            swap(A[i],A[j]);
+            j++;
+		}
+	}
+    return A;
+}
+*/
