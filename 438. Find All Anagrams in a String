@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> ans;
+        int i=0;
+        int j=0;
+        int n = s.length();
+        int k = p.length();
+        map<char,int> m;
+
+        for(auto c : p){
+            m[c]++;
+        }
+
+        int ct=m.size();
+
+        while(j < n){
+            m[s[j]]--;
+            if(m[s[j]]==0){
+                ct--;
+            }
+
+            if(j - i + 1 < k){
+                j++;
+            } else {
+                if(ct==0){
+                    ans.push_back(i);
+                }
+                if(m[s[i]]==0){
+                    ct++;
+                }
+                m[s[i]]++;
+                i++;
+                j++;
+            }
+        }
+        return ans;
+    }
+};
