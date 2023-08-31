@@ -1,0 +1,23 @@
+class Solution {
+public:
+    long long minimumPossibleSum(int n, int target) {
+//         vector<long long> odd, even;
+
+//     vector<long long> b = odd;
+//     b.insert(b.end(), even.begin(), even.end());
+       long long ans = 0;
+
+        set<int> s;
+        set<int> ti;
+        int i=1;
+        while(s.size()<n){
+            long long secNum=target-i;
+            if(!s.contains(secNum)){
+                s.insert(i);
+                ans = ans + i;
+            }
+            i++;
+        }   
+    return ans;
+    }
+};
