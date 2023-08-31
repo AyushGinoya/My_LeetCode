@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int furthestDistanceFromOrigin(string m) {
+        int n = m.length();
+        int ct=0,ct1=0,ct2=0;;
+        
+        for(int i=0;i<n;i++){
+            char c=m[i];
+            if(c=='L'){
+                ct++;
+            }else if(c=='R'){
+                ct1++;
+            }else{
+                ct2++;
+            }
+        }
+        return ct2+abs(ct-ct1);
+    }
+};
