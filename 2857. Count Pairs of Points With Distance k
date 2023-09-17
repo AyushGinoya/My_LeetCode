@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countPairs(vector<vector<int>>& coordinates, int k) {
+        map<pair<int,int>,int>mp;
+
+        int ct=0;
+
+        for(auto i : coordinates){
+            int x1=i[0],y1=i[1];
+            for(int j=0;j<=k;j++){
+                int x2=x1^j;
+                int y2=y1^(k-j);
+                ct+=mp[{x2,y2}];
+            }
+            mp[{x1,y1}]++;
+        }
+        return ct;
+    }
+};
