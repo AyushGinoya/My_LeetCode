@@ -1,0 +1,37 @@
+class Solution {
+public:
+
+    int getMaxLength(string s,int k,char c){
+        int i=0;
+        int j=0;
+        int ans=0;
+        int n=s.size();
+        int ct=0;
+
+        //TTTTTT
+        while(j<n){
+            if(s[j]==c){
+                ct++;
+            } 
+            if(ct<=k){
+                j++;
+            }else if(ct>k){
+                while(ct>k){
+                    if(s[i]==c){
+                        ct--;
+                    }
+                    i++;
+                }
+                j++;
+            }
+            ans=max(ans,j-i);
+        }
+
+        return ans;
+    }
+    int maxConsecutiveAnswers(string s, int k) {
+        int ans=max(getMaxLength(s,k,'F'),getMaxLength(s,k,'T'));
+
+        return ans;
+    }
+};
