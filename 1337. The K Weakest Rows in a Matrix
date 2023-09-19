@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        int n=mat.size();
+        int mn=mat[0].size();
+        vector<pair<int,int>>p;
+        //map<int,int> m;
+
+        for(int i=0;i<n;i++){
+            int c=0;
+            for(int j=0;j<mn;j++){
+                if(mat[i][j]==1){
+                    c++;
+                }else{
+                    break;
+                }
+            }
+            p.push_back({c,i});
+            //m[c]=i;
+        }  
+   
+        sort(p.begin(), p.end());
+        vector<int> ans(k,0);
+
+        for (int i = 0; i < k; i++) {
+            ans[i] = p[i].second;
+        }
+
+        return ans;
+    }
+};
