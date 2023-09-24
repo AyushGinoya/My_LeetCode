@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+void solve(int id, int n, vector<int>& maxHeights, vector<int>& height) {
+    height[id] = maxHeights[id];
+
+    // Update heights from id to 0
+    for (int temp = id - 1; temp >= 0; temp--) {
+        height[temp] = min(maxHeights[temp], height[temp + 1]);
+    }
+
+    // Update heights from id to n-1
+    for (int i = id + 1; i < n; i++) {
+        height[i] = min(maxHeights[i], height[i - 1]);
+    }
+}
+    long long maximumSumOfHeights(vector<int>& maxHeights) {
+        int n = maxHeights.size();
+    vector<int> height(n, 0);
+    long long maxSum = -1e8;
+
+    for (int i = 0; i < n; i++) {
+        solve(i, n, maxHeights, height);
+        long long sum = 0;
+        for (int val : height) {
+            sum += val;
+        }
+
+        maxSum = max(sum, maxSum);
+    }
+    return maxSum;
+        
+        
+    }
+};
