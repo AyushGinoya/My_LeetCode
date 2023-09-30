@@ -1,0 +1,28 @@
+class Solution {
+public:
+
+    void fun(vector<vector<int>>&ans,vector<int> &arr,int t,vector<int> &temp,int i){
+        if(t==0){
+            ans.push_back(temp);
+            return;
+        }
+        if (i == arr.size() || t < 0) {  
+            return;
+        }
+        
+        temp.push_back(arr[i]);
+        fun(ans,arr,t-arr[i],temp,i);
+        temp.pop_back();
+        fun(ans,arr,t,temp,i+1);
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& c, int t) {
+        vector<vector<int>> ans;
+        int n=c.size();
+        vector<int> temp;
+
+        fun(ans,c,t,temp,0);
+
+        return ans;
+    }
+};
