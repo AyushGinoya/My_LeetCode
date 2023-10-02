@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        
+        int ans=0;
+        map<int,int> m;
+        int n=nums.size();
+        
+        
+        for(int i=1;i<=k;i++){
+            m[i]=i;
+        }
+        cout<<m.size()<<endl;
+        
+        for(int i=n-1;i>=0;i--){
+            ans++;
+            if(m.find(nums[i])!=m.end()){
+                m.erase(nums[i]);
+                
+            }
+            
+            if(m.size()==0){
+                break;
+            }
+        }
+        
+        return ans;
+    }
+};
