@@ -1,0 +1,45 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        
+        int ans=0;
+        int n=nums.size();
+        
+        map<int,int> m;
+        
+        for(int i:nums){
+            m[i]++;
+        }
+        
+        for(auto it:m){
+            
+           int ct=it.second;
+            cout<<ct<<endl;
+            if(ct==1){
+                return -1;
+            }
+            if(ct%3==0){
+                ans+=ct/3;
+               // m.erase(it);
+                continue;
+            }
+            
+            if(ct%3==1){
+                ct=ct-4;
+                ans+=ct/3;
+                ans+=2;
+                continue;
+            }
+            
+            if(ct%3==2){
+                ct=ct-2;
+                ans+=ct/3;
+                ans+=1;
+                continue;
+            }
+            
+        } 
+        
+        return ans;
+    }
+};
