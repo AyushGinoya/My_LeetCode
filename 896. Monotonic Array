@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        bool ans1=false;
+        bool ans2=false;
+        int n=nums.size();
+        
+        for(int i=1;i<n;i++){
+            if(nums[i]<nums[i-1]){
+                ans1=true;
+            }else if(nums[i]>nums[i-1]){
+                ans2=true;
+            }
+
+            if(ans1==true && ans2==true){
+                return false;
+            }
+        }
+
+        return true;;
+    }
+};
