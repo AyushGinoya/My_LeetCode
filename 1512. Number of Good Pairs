@@ -1,0 +1,20 @@
+class Solution {
+public:
+
+    int numIdenticalPairs(vector<int>& nums) {
+        int ans = 0;
+        map<int, int> m;
+
+        for (int i : nums) {
+            m[i]++;
+        }
+
+        for (auto it : m) {
+            if (it.second >= 2) {
+                ans += (it.second*(it.second-1))/2;
+            }
+        }
+
+        return ans;
+    }
+};
