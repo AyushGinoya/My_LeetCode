@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minProcessingTime(vector<int>& pt, vector<int>& t) {
+        sort(t.begin(), t.end());
+        sort(pt.begin(),pt.end());
+        int j = 0;
+        int ans = 0;
+
+        for (int i = pt.size()-1; i >= 0; i--) {
+            int n = pt[i];
+            int temp = 0;
+            for (int k = j; k <j+4; k++) {
+                cout<<t[k]<<"   ";
+                temp = max(temp, n + t[k]);
+            }
+            ans = max(ans, temp);
+            j += 4;
+        }
+        return ans;
+    }
+};
