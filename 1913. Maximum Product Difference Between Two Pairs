@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+        // sort(nums.begin(),nums.end());
+        // int n=nums.size();
+        // return((nums[n-1]*nums[n-2])-(nums[0]*nums[1]));
+
+
+        //5,6,2,7,4
+        //4,2,5,9,7,4,8
+
+        int fs=INT_MAX,ss=INT_MAX,fb=0,sb=0;
+
+        for(int n : nums){
+            if(n < fs){
+                ss = fs;
+                fs = n;
+            }else if(n < ss){
+                ss = n;
+            }
+
+            if(n > fb){
+                sb = fb;
+                fb = n;
+            }else if(n > sb){
+                sb = n;
+            }
+        }
+
+        return ((fb*sb)-(ss*fs));
+    }
+};
