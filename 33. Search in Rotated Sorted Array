@@ -1,0 +1,66 @@
+class Solution {
+public:
+    int BS(vector<int>& nums) {
+        int s = 0;
+        int e = nums.size() - 1;
+        int n = nums.size();
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+
+            int next = (mid + 1) % n;
+            int prev = (mid + n - 1) % n;
+
+            // Check if mid is the pivot
+            if (nums[mid] <= nums[prev] && nums[mid] <= nums[next]) {
+                return mid;
+            }
+
+            // Decide which half to search next
+            if (nums[mid] >= nums[s] && nums[mid] > nums[e]) {
+                // Pivot must be in the right half
+                s = mid + 1;
+            } else {
+                // Pivot must be in the left half
+                e = mid - 1;
+            }
+        }
+        return -1; // If the array is not rotated, the pivot is the first element
+    }
+    int BS1(vector<int>& nums, int target, int s, int e) {
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            if (nums[mid] >= target) {
+                e = mid - 1;
+
+            } else {
+                s = mid + 1;
+            }
+        }
+        return -1;
+    }
+    int search(vector<int>& nums, int target) {
+        int index = -1;
+        index = BS(nums);
+        int n = nums.size();
+
+        int left = BS1(nums, target, 0, index);
+        int right = BS1(nums, target, index, n - 1);
+
+        if (left == -1 && right == -1) {
+            return -1;
+        }
+
+        if (left == -1) {
+            return right;
+        }
+
+        return left;
+    }
+};
