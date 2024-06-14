@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minIncrementForUnique(vector<int>& nums) {
+
+        // Sort the input array to process duplicates easily
+        sort(nums.begin(), nums.end());
+
+        // 'need' is the next available unique number
+        int need = 0;
+        int ans = 0;
+
+        for (auto i : nums) {
+            if (i > need) {
+                // If the current number is greater than 'need', update 'need'
+                need = i + 1;
+            } else {
+                // If the current number is less than or equal to 'need',
+                // increment it to make it unique
+                ans += need - i;
+                need++;
+            }
+        }
+        return ans;
+    }
+};
