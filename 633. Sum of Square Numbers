@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        bool ans = false;
+        long long b = (int)sqrt(c);
+        long long a = 0;
+
+        while (a <= b) {
+            long long t = a * a + b * b;
+            if (t == c) {
+                return true;
+            }
+            if (t < c) {
+                a++;
+            } else {
+                b--;
+            }
+        }
+        return ans;
+    }
+};
